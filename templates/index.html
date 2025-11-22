@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deepfake Detector</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Deepfake Detector</h1>
+        <p>Upload an image and find out if it’s real or fake!</p>
+    </header>
+
+    <!-- Main container -->
+    <div class="container">
+        <input type="file" id="imageInput" accept="image/*">
+        <button onclick="uploadImage()">Predict</button>
+        
+        <!-- Image preview -->
+        <div id="previewContainer">
+            <img id="preview" src="" alt="Image preview">
+        </div>
+
+        <!-- Prediction -->
+        <div id="predictionContainer">
+            <p id="result"></p>
+            <div class="progress-bar">
+                <div id="confidenceBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Developed by AKM &copy; 2025</p>
+    </footer>
+
+    <script>
+    function uploadImage() {
+        const fileInput = document.getElementById('imageInput');
+        const file = fileInput.files[0];
+        if (!file) {
+            alert("Please select an image");
+            return;
+        }
+
+        // Show preview
+        const preview = document.getElementById('preview');
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+
+        const formData = new FormData();
+        formData.append("file", file);
+
+        fetch("/predict", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                document.getElementById("result").innerText = data.error;
+                document.getElementById("confidenceBar").style.width = "0%";
+            } else {
+                const label = data.label.toUpperCase();
+                const confidence = (data.confidence * 100).toFixed(2);
+                document.getElementById("result").innerText = `Prediction: ${label} (${confidence}%)`;
+                document.getElementById("confidenceBar").style.width = `${confidence}%`;
+                document.getElementById("confidenceBar").style.backgroundColor = label === "FAKE" ? "#ff4d4d" : "#4CAF50";
+            }
+        })
+        .catch(err => console.error(err));
+    }
+    </script>
+</body>
+</html>

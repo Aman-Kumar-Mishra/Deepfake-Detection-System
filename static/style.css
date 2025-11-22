@@ -1,0 +1,112 @@
+/* Body & Background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 30px;
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3em;
+}
+
+header p {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+/* Main container */
+.container {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    margin-bottom: 40px;
+}
+
+input[type=file] {
+    margin-top: 10px;
+}
+
+button {
+    padding: 12px 25px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #667eea;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #5a67d8;
+}
+
+/* Image preview */
+#previewContainer {
+    margin-top: 20px;
+}
+
+#preview {
+    max-width: 300px;
+    border: 3px solid #ddd;
+    border-radius: 10px;
+    padding: 5px;
+    display: none;
+}
+
+/* Prediction container */
+#predictionContainer {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 22px;
+    background-color: #ddd;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+#confidenceBar {
+    height: 100%;
+    width: 0%;
+    text-align: center;
+    line-height: 22px;
+    color: white;
+    border-radius: 12px;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    
+}
